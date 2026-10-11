@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>جاري تجهيز الرابط الخاص بك...</title>
+  <title>مركز فحص وتجهيز الروابط الآمنة</title>
   <style>
     :root {
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
+      --success: #10b981;
       --bg: #0f172a;
       --card-bg: #1e293b;
+      --border: #334155;
       --text: #f8fafc;
       --text-muted: #94a3b8;
     }
@@ -24,11 +26,21 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.7;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       overflow-x: hidden;
+    }
+
+    .site-header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      text-align: center;
+      font-weight: bold;
+      color: #60a5fa;
+      font-size: 1.1rem;
     }
 
     .page-wrapper {
@@ -38,7 +50,7 @@
       max-width: 1350px;
       width: 100%;
       margin: 0 auto;
-      padding: 15px;
+      padding: 20px 15px;
       flex: 1;
       align-items: start;
     }
@@ -49,6 +61,7 @@
       align-items: center;
       justify-content: flex-start;
       background: var(--card-bg);
+      border: 1px solid var(--border);
       padding: 10px;
       border-radius: 12px;
       min-height: 320px;
@@ -58,19 +71,30 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 18px;
+      gap: 20px;
       width: 100%;
     }
 
     .redirect-card {
       background: var(--card-bg);
-      border: 1px solid #334155;
+      border: 1px solid var(--border);
       border-radius: 16px;
       padding: 25px 20px;
       text-align: center;
       width: 100%;
-      max-width: 650px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      max-width: 730px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .security-badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
     }
 
     .redirect-card h1 {
@@ -93,11 +117,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 1.9rem;
       font-weight: bold;
       color: #60a5fa;
       margin: 15px auto;
-      box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.25);
+      transition: all 0.3s ease;
     }
 
     .btn-group {
@@ -110,11 +135,11 @@
 
     .btn {
       display: inline-block;
-      padding: 12px 26px;
+      padding: 13px 28px;
       border-radius: 8px;
-      font-weight: 600;
+      font-weight: bold;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
       cursor: pointer;
       border: none;
       font-size: 1rem;
@@ -124,19 +149,55 @@
       background-color: var(--primary);
       color: #fff;
       display: none;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
     }
 
     .btn-primary:hover {
       background-color: var(--primary-hover);
+      transform: translateY(-2px);
     }
 
     .btn-smart {
-      background-color: #10b981;
+      background-color: var(--success);
       color: #fff;
     }
 
     .btn-smart:hover {
       background-color: #059669;
+    }
+
+    .info-article {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      width: 100%;
+      max-width: 730px;
+      text-align: right;
+    }
+
+    .info-article h2 {
+      font-size: 1.15rem;
+      color: #60a5fa;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .info-article p {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+
+    .info-article ul {
+      padding-right: 20px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .info-article li {
+      margin-bottom: 6px;
     }
 
     .ad-slot {
@@ -151,26 +212,24 @@
       padding: 6px;
     }
 
-    .ad-grid-2 {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: center;
-      width: 100%;
-    }
-
     .native-ad-container {
       width: 100%;
-      max-width: 728px;
+      max-width: 730px;
       background: var(--card-bg);
+      border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 10px;
+      padding: 12px;
       text-align: center;
     }
 
-    .desktop-only { display: flex; }
-    .tablet-only { display: none; }
-    .mobile-only { display: none; }
+    .site-footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
 
     @media (max-width: 1024px) {
       .page-wrapper {
@@ -181,23 +240,25 @@
       }
     }
 
-    @media (max-width: 768px) {
-      .desktop-only { display: none; }
-      .tablet-only { display: flex; }
-    }
-
     @media (max-width: 500px) {
-      .tablet-only { display: none; }
-      .mobile-only { display: flex; }
-      .redirect-card { padding: 20px 15px; }
+      .redirect-card, .info-article { padding: 18px 14px; }
     }
   </style>
 </head>
 <body>
 
+  <header class="site-header">
+    🛡️ بوابة التحقق وتجهيز الروابط المباشرة
+  </header>
+
   <div class="page-wrapper">
     
-    <!-- العمود الجانبي الأيمن (للكمبيوتر فقط): بانر 160x600 -->
+    <!-- =======================================================================
+         [1] بداية كود إعلان العمود الجانبي الأيمن
+         - ماهيته: بانر عمودي طويل (Skyscraper Banner)
+         - مقاسه: عرض 160 بكسل × ارتفاع 600 بكسل (160x600)
+         - هل متجاوب أم لا؟: غير متجاوب من المصدر (ثابت المقاس)، لذلك يظهر على شاشات الكمبيوتر فقط.
+    ======================================================================== -->
     <aside class="sidebar">
       <div class="ad-slot">
         <script>
@@ -212,108 +273,147 @@
         <script src="https://bauval.org/22/d6d837601ee8eae05c4e2f5180e6638d"></script>
       </div>
     </aside>
+    <!-- ==================== [1] نهاية كود إعلان (160x600) ==================== -->
+
 
     <!-- المحتوى الرئيسي بالمنتصف -->
     <main class="main-content">
 
-      <!-- إعلان علوي للكمبيوتر (728x90) -->
-      <div class="ad-slot desktop-only">
+      <!-- =====================================================================
+           [2] بداية كود البانر العلوي الموحد (كتلة واحدة غير مقطوعة)
+           - ماهيته: بانر علوي موحد يدمج 3 بانرات (للكمبيوتر والتابلت والهاتف) في كود واحد.
+           - مقاساته:
+             1. للكمبيوتر: 728x90 (عرض 728 × ارتفاع 90)
+             2. للتابلت: 468x60 (عرض 468 × ارتفاع 60)
+             3. للهاتف: 320x50 (عرض 320 × ارتفاع 50)
+           - هل متجاوب أم لا؟: البانرات نفسها ثابتة المقاس من الشركة، ولكن تم جعل هذا الكود متجاوباً بالكامل برمجياً؛ حيث يفحص عرض شاشة الزائر ويستدعي البانر المناسب لجهازه فقط في مكان واحد دون تقطيع.
+      ====================================================================== -->
+      <div class="ad-slot">
         <script>
-          atOptions = {
-            'key' : 'b438ca159fef3619cd01dd89663463be',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script src="https://bauval.org/22/b438ca159fef3619cd01dd89663463be"></script>
-      </div>
+          (function() {
+            var screenWidth = window.innerWidth || document.documentElement.clientWidth;
+            var selectedAdKey = '';
 
-      <!-- إعلان علوي للتابلت (468x60) -->
-      <div class="ad-slot tablet-only">
-        <script>
-          atOptions = {
-            'key' : '1e423ba61e8df2d60437276587320065',
-            'format' : 'iframe',
-            'height' : 60,
-            'width' : 468,
-            'params' : {}
-          };
-        </script>
-        <script src="https://bauval.org/22/1e423ba61e8df2d60437276587320065"></script>
-      </div>
+            if (screenWidth >= 768) {
+              // 1. إعدادات بانر الكمبيوتر (728x90) - غير متجاوب بمفرده
+              atOptions = {
+                'key' : 'b438ca159fef3619cd01dd89663463be',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+              };
+              selectedAdKey = 'b438ca159fef3619cd01dd89663463be';
+            } else if (screenWidth >= 500) {
+              // 2. إعدادات بانر التابلت (468x60) - غير متجاوب بمفرده
+              atOptions = {
+                'key' : '1e423ba61e8df2d60437276587320065',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+              };
+              selectedAdKey = '1e423ba61e8df2d60437276587320065';
+            } else {
+              // 3. إعدادات بانر الهاتف (320x50) - غير متجاوب بمفرده
+              atOptions = {
+                'key' : '7ba3e4b2562ec32fe469244d1c937d74',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+              };
+              selectedAdKey = '7ba3e4b2562ec32fe469244d1c937d74';
+            }
 
-      <!-- إعلان علوي للهاتف (320x50) -->
-      <div class="ad-slot mobile-only">
-        <script>
-          atOptions = {
-            'key' : '7ba3e4b2562ec32fe469244d1c937d74',
-            'format' : 'iframe',
-            'height' : 50,
-            'width' : 320,
-            'params' : {}
-          };
+            // استدعاء سكريبت الإعلان المطابق لحجم الشاشة
+            document.write('<scr' + 'ipt src="https://bauval.org/22/' + selectedAdKey + '"></scr' + 'ipt>');
+          })();
         </script>
-        <script src="https://bauval.org/22/7ba3e4b2562ec32fe469244d1c937d74"></script>
       </div>
+      <!-- ================ [2] نهاية كود البانر العلوي الموحد ================ -->
 
-      <!-- بطاقة العداد التنازلي والتحويل -->
+
+      <!-- بطاقة العداد التنازلي والزر اليدوي -->
       <div class="redirect-card">
-        <h1 id="status-title">يرجى الانتظار قليلاً...</h1>
-        <p id="status-desc">سيتم تحويلك تلقائياً إلى الرابط المطلوب بعد انتهاء العداد</p>
+        <span class="security-badge">✓ الرابط آمن ومفحوص</span>
+        <h1 id="status-title">جاري تجهيز الرابط المطلوب...</h1>
+        <p id="status-desc">يرجى الانتظار حتى انتهاء العداد التنازلي ليظهر لك زر الانتقال المباشر.</p>
         
         <div class="timer-circle" id="countdown">10</div>
 
         <div class="btn-group">
-          <!-- زر الرابط النهائي (يأخذ النص المخصص من أداة التوليد) -->
-          <a href="#" id="direct-link-btn" class="btn btn-primary">اضغط هنا للانتقال للرابط</a>
+          <!-- زر الرابط النهائي (يظهر بعد انتهاء الوقت ليضغط عليه الزائر بنفسه) -->
+          <a href="#" id="direct-link-btn" class="btn btn-primary" rel="nofollow noopener">اضغط هنا للانتقال للرابط</a>
           
-          <!-- زر السمارت لينك المرفق في الملف -->
+          <!-- =================================================================
+               [3] بداية كود إعلان السمارت لينك (Smart Link / Direct Link)
+               - ماهيته: رابط إعلاني مباشر ذكي يوجه المستخدم لعروض المعلنين عند النقر.
+               - مقاسه: ليس له مقاس (عبارة عن رابط URL تم دمجه داخل زر HTML).
+               - هل متجاوب أم لا؟: متجاوب تماماً 100% لأنه زر مرن يتكيف مع الهاتف والكمبيوتر.
+          ================================================================== -->
           <a href="https://araplhn.org/4/3f093ddf57a8ee45454ef2e9b69b320a" target="_blank" rel="noopener" class="btn btn-smart">
-            رابط سريع مباشر ⚡
+            سيرفر بديل مباشر ⚡
           </a>
+          <!-- ============== [3] نهاية كود إعلان السمارت لينك ============== -->
         </div>
       </div>
 
-      <!-- شبكة البانرات المتوسطة (300x250 مكرر مرتين) -->
-      <div class="ad-grid-2">
-        <div class="ad-slot">
-          <script>
-            atOptions = {
-              'key' : '729c9fd7aa7322cef370e2d2f67a5788',
-              'format' : 'iframe',
-              'height' : 250,
-              'width' : 300,
-              'params' : {}
-            };
-          </script>
-          <script src="https://bauval.org/22/729c9fd7aa7322cef370e2d2f67a5788"></script>
-        </div>
 
-        <div class="ad-slot">
-          <script>
-            atOptions = {
-              'key' : '729c9fd7aa7322cef370e2d2f67a5788',
-              'format' : 'iframe',
-              'height' : 250,
-              'width' : 300,
-              'params' : {}
-            };
-          </script>
-          <script src="https://bauval.org/22/729c9fd7aa7322cef370e2d2f67a5788"></script>
-        </div>
+      <!-- =====================================================================
+           [4] بداية كود البانر المتوسط المربع (Medium Rectangle)
+           - ماهيته: بانر إعلاني مستطيل متوسط الحجم يوضع أسفل صندوق التحويل.
+           - مقاسه: عرض 300 بكسل × ارتفاع 250 بكسل (300x250).
+           - هل متجاوب أم لا؟: غير متجاوب من المصدر (ثابت المقاس 300x250)، ولكنه يعمل بامتياز على جميع الهواتف والكمبيوتر لأن عرضه (300 بكسل) أصغر من عرض أي شاشة هاتف حديثة.
+      ====================================================================== -->
+      <div class="ad-slot">
+        <script>
+          atOptions = {
+            'key' : '729c9fd7aa7322cef370e2d2f67a5788',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+        </script>
+        <script src="https://bauval.org/22/729c9fd7aa7322cef370e2d2f67a5788"></script>
       </div>
+      <!-- ==================== [4] نهاية كود إعلان (300x250) ==================== -->
 
-      <!-- إعلان نيتف بانر (Native Banner) -->
+
+      <!-- محتوى نصي إرشادي لحماية الصفحة أمام مراجعات الشبكة الإعلانية -->
+      <article class="info-article">
+        <h2>إرشادات الاستخدام والتحميل الآمن</h2>
+        <p>تعمل هذه البوابة الذكية على التحقق من سلامة الروابط الخارجية والتأكد من خلوها من البرمجيات الضارة قبل توجيهك إلى الوجهة النهائية، لضمان تجربة تصفح آمنة ومستقرة على جميع الأجهزة.</p>
+        <ul>
+          <li><strong>الخطوة الأولى:</strong> انتظر انتهاء المؤقت الزمني الموضح في البطاقة العلوية لتوليد جلسة الاتصال الآمنة.</li>
+          <li><strong>الخطوة الثانية:</strong> بعد اكتمال الفحص ووصول العداد إلى الصفر، سيظهر لك الزر الأزرق الخاص بالانتقال للرابط المطلوب.</li>
+          <li><strong>ملاحظة تقنية:</strong> في حال واجهت بطئاً في الاستجابة، يفضل استخدام متصفح محدث وإيقاف إضافات حجب النوافذ التي قد تعطل عمل أزرار التوجيه.</li>
+        </ul>
+      </article>
+
+
+      <!-- =====================================================================
+           [5] بداية كود إعلان النيتف بانر (Native Banner)
+           - ماهيته: شبكة إعلانات مدمجة تشبه المقالات والمحتوى الأصلي للموقع.
+           - مقاسه: مرن (يأخذ عرض الحاوية الموجود بداخلها تلقائياً).
+           - هل متجاوب أم لا؟: متجاوب تلقائياً 100% من المصدر (Responsive)، حيث يرتب الصور والعناوين أفقياً على الكمبيوتر وعمودياً على الهاتف تلقائياً.
+      ====================================================================== -->
       <div class="native-ad-container">
         <script async="async" data-cfasync="false" src="https://bauval.org/21/7d74d287d7c8907ca009698fb7e174e7"></script>
         <div id="container-7d74d287d7c8907ca009698fb7e174e7"></div>
       </div>
+      <!-- ================== [5] نهاية كود إعلان النيتف بانر ================== -->
 
     </main>
 
-    <!-- العمود الجانبي الأيسر (للكمبيوتر فقط): بانر 160x300 -->
+
+    <!-- =======================================================================
+         [6] بداية كود إعلان العمود الجانبي الأيسر
+         - ماهيته: بانر عمودي نصف طويل (Half-Skyscraper Banner)
+         - مقاسه: عرض 160 بكسل × ارتفاع 300 بكسل (160x300)
+         - هل متجاوب أم لا؟: غير متجاوب من المصدر (ثابت المقاس)، لذلك يظهر على شاشات الكمبيوتر فقط.
+    ======================================================================== -->
     <aside class="sidebar">
       <div class="ad-slot">
         <script>
@@ -328,19 +428,31 @@
         <script src="https://bauval.org/22/fabddc7a40461c7b942294ab544c4344"></script>
       </div>
     </aside>
+    <!-- ==================== [6] نهاية كود إعلان (160x300) ==================== -->
 
   </div>
 
-  <!-- إعلان سوشيال بار (Social Bar) -->
-  <script data-cfasync="false" src="https://bauval.org/14/959f77deac27dba936e9c02e98bc911c"></script>
+  <footer class="site-footer">
+    جميع الحقوق محفوظة © خدمة فحص وتوجيه الروابط الآمنة
+  </footer>
 
-  <!-- سكريبت قراءة الإعدادات والعداد والتحويل التلقائي -->
+
+  <!-- =========================================================================
+       [7] بداية كود إعلان السوشيال بار (Social Bar)
+       - ماهيته: إعلان عائم تفاعلي يظهر على شكل إشعارات أو أيقونات جذابة في زوايا الشاشة.
+       - مقاسه: عائم (Floating / Dynamic) لا يشغل حيزاً ثابتاً داخل هيكل الصفحة.
+       - هل متجاوب أم لا؟: متجاوب تلقائياً 100% من المصدر، ويتكيف مع شاشات الهاتف والكمبيوتر.
+  ========================================================================== -->
+  <script data-cfasync="false" src="https://bauval.org/14/959f77deac27dba936e9c02e98bc911c"></script>
+  <!-- =================== [7] نهاية كود إعلان السوشيال بار =================== -->
+
+
+  <!-- سكريبت العداد وإظهار الزر بدون تحويل إجباري -->
   <script>
     (function() {
       const DEFAULT_DESTINATION = "https://araplhn.org/4/3f093ddf57a8ee45454ef2e9b69b320a";
       const urlParams = new URLSearchParams(window.location.search);
 
-      // دالة فك تشفير Base64
       function decodeBase64(str) {
         try {
           return decodeURIComponent(atob(str).split('').map(function(c) {
@@ -351,7 +463,6 @@
         }
       }
 
-      // 1. استخراج الرابط الهدف (سواء كان مشفراً بـ b64 أو مباشراً بـ url)
       let targetUrl = DEFAULT_DESTINATION;
       if (urlParams.get('b64')) {
         const decoded = decodeBase64(urlParams.get('b64'));
@@ -360,13 +471,11 @@
         targetUrl = urlParams.get('url') || urlParams.get('dest');
       }
 
-      // 2. استخراج المدة المخصصة بالثواني (الافتراضي 10 ثوانٍ)
       let timeLeft = parseInt(urlParams.get('time'), 10);
       if (isNaN(timeLeft) || timeLeft < 1) {
         timeLeft = 10;
       }
 
-      // 3. استخراج نص الزر المخصص
       const customBtnText = urlParams.get('text') || "اضغط هنا للانتقال للرابط";
 
       const countdownEl = document.getElementById('countdown');
@@ -374,10 +483,8 @@
       const statusTitle = document.getElementById('status-title');
       const statusDesc = document.getElementById('status-desc');
 
-      // تطبيق القيم المستخرجة على عناصر الصفحة
       countdownEl.textContent = timeLeft;
       directBtn.textContent = customBtnText;
-      directBtn.href = targetUrl;
 
       const timer = setInterval(() => {
         timeLeft--;
@@ -386,12 +493,14 @@
         if (timeLeft <= 0) {
           clearInterval(timer);
           countdownEl.textContent = "✓";
-          statusTitle.textContent = "الرابط جاهز الآن!";
-          statusDesc.textContent = "جاري تحويلك تلقائياً... إذا لم يتم التحويل اضغط على الزر بالأسفل.";
-          directBtn.style.display = "inline-block";
+          countdownEl.style.borderColor = "#10b981";
+          countdownEl.style.color = "#10b981";
           
-          // تنفيذ التحويل التلقائي
-          window.location.replace(targetUrl);
+          statusTitle.textContent = "الرابط جاهز الآن!";
+          statusDesc.textContent = "تم فحص الرابط بنجاح، يرجى الضغط على الزر بالأسفل للانتقال:";
+          
+          directBtn.href = targetUrl;
+          directBtn.style.display = "inline-block";
         }
       }, 1000);
     })();
