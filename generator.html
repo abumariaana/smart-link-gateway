@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أداة توليد روابط التحويل</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --success: #10b981;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .generator-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px 25px;
+      width: 100%;
+      max-width: 550px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .generator-card h1 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: #60a5fa;
+      text-align: center;
+    }
+
+    .generator-card p.subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background-color: #0f172a;
+      color: var(--text);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+    }
+
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .checkbox-group input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .checkbox-group span {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 13px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-generate {
+      background-color: var(--primary);
+      color: #fff;
+    }
+
+    .btn-generate:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .result-box {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: none;
+    }
+
+    .result-actions {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn-copy {
+      background-color: var(--success);
+      color: #fff;
+    }
+
+    .btn-copy:hover {
+      background-color: #059669;
+    }
+
+    .btn-test {
+      background-color: #475569;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-test:hover {
+      background-color: #334155;
+    }
+
+    @media (max-width: 480px) {
+      .row-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="generator-card">
+    <h1>🔗 مولّد روابط التحويل</h1>
+    <p class="subtitle">قم بتخصيص الرابط النهائي، نص الزر، ومدة الانتظار</p>
+
+    <!-- مسار صفحة التحويل (يتحدد تلقائياً ويمكنك تعديله) -->
+    <div class="form-group">
+      <label for="base-url">رابط صفحة الإعلانات (index.html):</label>
+      <input type="url" id="base-url" class="form-control" dir="ltr" required>
+    </div>
+
+    <!-- الرابط المراد التحويل إليه -->
+    <div class="form-group">
+      <label for="target-url">الرابط المراد زيارته (الهدف):</label>
+      <input type="url" id="target-url" class="form-control" dir="ltr" placeholder="https://example.com/file.zip" required>
+    </div>
+
+    <!-- نص الزر والمدة -->
+    <div class="row-2">
+      <div class="form-group">
+        <label for="btn-text">نص الزر:</label>
+        <input type="text" id="btn-text" class="form-control" value="اضغط هنا للانتقال للرابط" placeholder="مثال: تحميل الملف الآن">
+      </div>
+
+      <div class="form-group">
+        <label for="timer-sec">مدة العداد (بالثواني):</label>
+        <input type="number" id="timer-sec" class="form-control" value="10" min="1" max="300">
+      </div>
+    </div>
+
+    <!-- خيار تشفير الرابط -->
+    <label class="checkbox-group">
+      <input type="checkbox" id="encode-base64" checked>
+      <span>إخفاء الرابط الأصلي (تشفير Base64 لمنع تخطي الإعلانات)</span>
+    </label>
+
+    <button type="button" class="btn btn-generate" onclick="generateLink()">⚡ توليد الرابط الآن</button>
+
+    <!-- صندوق النتيجة -->
+    <div class="result-box" id="result-box">
+      <div class="form-group" style="margin-bottom: 10px;">
+        <label for="final-link">الرابط الجاهز للنشر:</label>
+        <input type="text" id="final-link" class="form-control" dir="ltr" readonly>
+      </div>
+      <div class="result-actions">
+        <button type="button" class="btn btn-copy" id="copy-btn" onclick="copyLink()">📋 نسخ الرابط</button>
+        <a href="#" target="_blank" class="btn btn-test" id="test-btn">معاينة ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // تحديد رابط صفحة index.html تلقائياً بناءً على موقع الملف الحالي
+    window.addEventListener('DOMContentLoaded', () => {
+      let currentUrl = window.location.href.split('?')[0].split('#')[0];
+      let baseUrl = currentUrl.replace(/generator\.html$/i, 'index.html');
+      if (!baseUrl.endsWith('.html') && !baseUrl.endsWith('/')) {
+        baseUrl += '/';
+      }
+      document.getElementById('base-url').value = baseUrl;
+    });
+
+    // دالة تشفير النصوص والروابط بصيغة Base64 متوافقة مع UTF-8
+    function encodeBase64(str) {
+      return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+        return String.fromCharCode('0x' + p1);
+      }));
+    }
+
+    function generateLink() {
+      const baseUrl = document.getElementById('base-url').value.trim();
+      let targetUrl = document.getElementById('target-url').value.trim();
+      const btnText = document.getElementById('btn-text').value.trim() || 'اضغط هنا للانتقال للرابط';
+      const timerSec = parseInt(document.getElementById('timer-sec').value, 10) || 10;
+      const isBase64 = document.getElementById('encode-base64').checked;
+
+      if (!targetUrl) {
+        alert('يرجى إدخال الرابط المراد زيارته أولاً!');
+        document.getElementById('target-url').focus();
+        return;
+      }
+
+      // إضافة https:// تلقائياً إذا نسي المستخدم كتابتها
+      if (!/^https?:\/\//i.test(targetUrl)) {
+        targetUrl = 'https://' + targetUrl;
+      }
+
+      const params = new URLSearchParams();
+
+      if (isBase64) {
+        params.set('b64', encodeBase64(targetUrl));
+      } else {
+        params.set('url', targetUrl);
+      }
+
+      params.set('time', timerSec);
+      params.set('text', btnText);
+
+      const separator = baseUrl.includes('?') ? '&' : '?';
+      const finalUrl = `${baseUrl}${separator}${params.toString()}`;
+
+      const finalLinkInput = document.getElementById('final-link');
+      finalLinkInput.value = finalUrl;
+      document.getElementById('test-btn').href = finalUrl;
+      document.getElementById('result-box').style.display = 'block';
+
+      const copyBtn = document.getElementById('copy-btn');
+      copyBtn.textContent = '📋 نسخ الرابط';
+      copyBtn.style.backgroundColor = '#10b981';
+    }
+
+    function copyLink() {
+      const finalLinkInput = document.getElementById('final-link');
+      finalLinkInput.select();
+      finalLinkInput.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(finalLinkInput.value).then(() => {
+        const copyBtn = document.getElementById('copy-btn');
+        copyBtn.textContent = '✅ تم النسخ بنجاح!';
+        copyBtn.style.backgroundColor = '#2563eb';
+      });
+    }
+  </script>
+
+</body>
+</html>

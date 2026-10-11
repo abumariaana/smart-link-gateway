@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جاري تجهيز الرابط الخاص بك...</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .page-wrapper {
+      display: grid;
+      grid-template-columns: 180px 1fr 180px;
+      gap: 15px;
+      max-width: 1350px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 15px;
+      flex: 1;
+      align-items: start;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: var(--card-bg);
+      padding: 10px;
+      border-radius: 12px;
+      min-height: 320px;
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      width: 100%;
+    }
+
+    .redirect-card {
+      background: var(--card-bg);
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 25px 20px;
+      text-align: center;
+      width: 100%;
+      max-width: 650px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .redirect-card h1 {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .redirect-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+    }
+
+    .timer-circle {
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #60a5fa;
+      margin: 15px auto;
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 26px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #fff;
+      display: none;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-smart {
+      background-color: #10b981;
+      color: #fff;
+    }
+
+    .btn-smart:hover {
+      background-color: #059669;
+    }
+
+    .ad-slot {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 5px auto;
+      max-width: 100%;
+      overflow: hidden;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 8px;
+      padding: 6px;
+    }
+
+    .ad-grid-2 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .native-ad-container {
+      width: 100%;
+      max-width: 728px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .desktop-only { display: flex; }
+    .tablet-only { display: none; }
+    .mobile-only { display: none; }
+
+    @media (max-width: 1024px) {
+      .page-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .desktop-only { display: none; }
+      .tablet-only { display: flex; }
+    }
+
+    @media (max-width: 500px) {
+      .tablet-only { display: none; }
+      .mobile-only { display: flex; }
+      .redirect-card { padding: 20px 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+    
+    <!-- العمود الجانبي الأيمن (للكمبيوتر فقط): بانر 160x600 -->
+    <aside class="sidebar">
+      <div class="ad-slot">
+        <script>
+          atOptions = {
+            'key' : 'd6d837601ee8eae05c4e2f5180e6638d',
+            'format' : 'iframe',
+            'height' : 600,
+            'width' : 160,
+            'params' : {}
+          };
+        </script>
+        <script src="https://bauval.org/22/d6d837601ee8eae05c4e2f5180e6638d"></script>
+      </div>
+    </aside>
+
+    <!-- المحتوى الرئيسي بالمنتصف -->
+    <main class="main-content">
+
+      <!-- إعلان علوي للكمبيوتر (728x90) -->
+      <div class="ad-slot desktop-only">
+        <script>
+          atOptions = {
+            'key' : 'b438ca159fef3619cd01dd89663463be',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+          };
+        </script>
+        <script src="https://bauval.org/22/b438ca159fef3619cd01dd89663463be"></script>
+      </div>
+
+      <!-- إعلان علوي للتابلت (468x60) -->
+      <div class="ad-slot tablet-only">
+        <script>
+          atOptions = {
+            'key' : '1e423ba61e8df2d60437276587320065',
+            'format' : 'iframe',
+            'height' : 60,
+            'width' : 468,
+            'params' : {}
+          };
+        </script>
+        <script src="https://bauval.org/22/1e423ba61e8df2d60437276587320065"></script>
+      </div>
+
+      <!-- إعلان علوي للهاتف (320x50) -->
+      <div class="ad-slot mobile-only">
+        <script>
+          atOptions = {
+            'key' : '7ba3e4b2562ec32fe469244d1c937d74',
+            'format' : 'iframe',
+            'height' : 50,
+            'width' : 320,
+            'params' : {}
+          };
+        </script>
+        <script src="https://bauval.org/22/7ba3e4b2562ec32fe469244d1c937d74"></script>
+      </div>
+
+      <!-- بطاقة العداد التنازلي والتحويل -->
+      <div class="redirect-card">
+        <h1 id="status-title">يرجى الانتظار قليلاً...</h1>
+        <p id="status-desc">سيتم تحويلك تلقائياً إلى الرابط المطلوب بعد انتهاء العداد</p>
+        
+        <div class="timer-circle" id="countdown">10</div>
+
+        <div class="btn-group">
+          <!-- زر الرابط النهائي (يأخذ النص المخصص من أداة التوليد) -->
+          <a href="#" id="direct-link-btn" class="btn btn-primary">اضغط هنا للانتقال للرابط</a>
+          
+          <!-- زر السمارت لينك المرفق في الملف -->
+          <a href="https://araplhn.org/4/3f093ddf57a8ee45454ef2e9b69b320a" target="_blank" rel="noopener" class="btn btn-smart">
+            رابط سريع مباشر ⚡
+          </a>
+        </div>
+      </div>
+
+      <!-- شبكة البانرات المتوسطة (300x250 مكرر مرتين) -->
+      <div class="ad-grid-2">
+        <div class="ad-slot">
+          <script>
+            atOptions = {
+              'key' : '729c9fd7aa7322cef370e2d2f67a5788',
+              'format' : 'iframe',
+              'height' : 250,
+              'width' : 300,
+              'params' : {}
+            };
+          </script>
+          <script src="https://bauval.org/22/729c9fd7aa7322cef370e2d2f67a5788"></script>
+        </div>
+
+        <div class="ad-slot">
+          <script>
+            atOptions = {
+              'key' : '729c9fd7aa7322cef370e2d2f67a5788',
+              'format' : 'iframe',
+              'height' : 250,
+              'width' : 300,
+              'params' : {}
+            };
+          </script>
+          <script src="https://bauval.org/22/729c9fd7aa7322cef370e2d2f67a5788"></script>
+        </div>
+      </div>
+
+      <!-- إعلان نيتف بانر (Native Banner) -->
+      <div class="native-ad-container">
+        <script async="async" data-cfasync="false" src="https://bauval.org/21/7d74d287d7c8907ca009698fb7e174e7"></script>
+        <div id="container-7d74d287d7c8907ca009698fb7e174e7"></div>
+      </div>
+
+    </main>
+
+    <!-- العمود الجانبي الأيسر (للكمبيوتر فقط): بانر 160x300 -->
+    <aside class="sidebar">
+      <div class="ad-slot">
+        <script>
+          atOptions = {
+            'key' : 'fabddc7a40461c7b942294ab544c4344',
+            'format' : 'iframe',
+            'height' : 300,
+            'width' : 160,
+            'params' : {}
+          };
+        </script>
+        <script src="https://bauval.org/22/fabddc7a40461c7b942294ab544c4344"></script>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- إعلان سوشيال بار (Social Bar) -->
+  <script data-cfasync="false" src="https://bauval.org/14/959f77deac27dba936e9c02e98bc911c"></script>
+
+  <!-- سكريبت قراءة الإعدادات والعداد والتحويل التلقائي -->
+  <script>
+    (function() {
+      const DEFAULT_DESTINATION = "https://araplhn.org/4/3f093ddf57a8ee45454ef2e9b69b320a";
+      const urlParams = new URLSearchParams(window.location.search);
+
+      // دالة فك تشفير Base64
+      function decodeBase64(str) {
+        try {
+          return decodeURIComponent(atob(str).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+          }).join(''));
+        } catch (e) {
+          return null;
+        }
+      }
+
+      // 1. استخراج الرابط الهدف (سواء كان مشفراً بـ b64 أو مباشراً بـ url)
+      let targetUrl = DEFAULT_DESTINATION;
+      if (urlParams.get('b64')) {
+        const decoded = decodeBase64(urlParams.get('b64'));
+        if (decoded) targetUrl = decoded;
+      } else if (urlParams.get('url') || urlParams.get('dest')) {
+        targetUrl = urlParams.get('url') || urlParams.get('dest');
+      }
+
+      // 2. استخراج المدة المخصصة بالثواني (الافتراضي 10 ثوانٍ)
+      let timeLeft = parseInt(urlParams.get('time'), 10);
+      if (isNaN(timeLeft) || timeLeft < 1) {
+        timeLeft = 10;
+      }
+
+      // 3. استخراج نص الزر المخصص
+      const customBtnText = urlParams.get('text') || "اضغط هنا للانتقال للرابط";
+
+      const countdownEl = document.getElementById('countdown');
+      const directBtn = document.getElementById('direct-link-btn');
+      const statusTitle = document.getElementById('status-title');
+      const statusDesc = document.getElementById('status-desc');
+
+      // تطبيق القيم المستخرجة على عناصر الصفحة
+      countdownEl.textContent = timeLeft;
+      directBtn.textContent = customBtnText;
+      directBtn.href = targetUrl;
+
+      const timer = setInterval(() => {
+        timeLeft--;
+        countdownEl.textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          countdownEl.textContent = "✓";
+          statusTitle.textContent = "الرابط جاهز الآن!";
+          statusDesc.textContent = "جاري تحويلك تلقائياً... إذا لم يتم التحويل اضغط على الزر بالأسفل.";
+          directBtn.style.display = "inline-block";
+          
+          // تنفيذ التحويل التلقائي
+          window.location.replace(targetUrl);
+        }
+      }, 1000);
+    })();
+  </script>
+
+</body>
+</html>
