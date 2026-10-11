@@ -52,7 +52,7 @@
     var s = document.createElement('script');
     s.setAttribute('data-cfasync', 'false');
     s.async = true;
-    s.src = 'ضع_رابط_سكريبت_social_bar_هنا';
+    s.src = 'https://bauval.org/14/959f77deac27dba936e9c02e98bc911c';
     // مثال: s.src = 'https://bauval.org/14/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
     document.head.appendChild(s);
   })();
@@ -65,7 +65,7 @@
         ↓ ضع رابط Smartlink هنا ↓
      ════════════════════════════════════════════════════ */
   (function () {
-    const SMARTLINK = 'ضع_رابط_smartlink_هنا';
+    const SMARTLINK = 'https://araplhn.org/4/3f093ddf57a8ee45454ef2e9b69b320a';
     // مثال: const SMARTLINK = 'https://araplhn.org/4/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
 
     const COOLDOWN  = 60 * 1000;
@@ -118,11 +118,11 @@
     const s = document.createElement('script');
     s.async = true;
     s.setAttribute('data-cfasync', 'false');
-    s.src = 'ضع_رابط_سكريبت_native_هنا';
+    s.src = 'https://bauval.org/21/7d74d287d7c8907ca009698fb7e174e7';
     // مثال: s.src = 'https://bauval.org/21/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
     wrap.appendChild(s);
     const d = document.createElement('div');
-    d.id = 'container-ضع_id_الحاوية_هنا';
+    d.id = 'container-7d74d287d7c8907ca009698fb7e174e7';
     // مثال: d.id = 'container-7d74d287d7c8907ca009698fb7e174e7';
     wrap.appendChild(d);
   })();
@@ -139,9 +139,9 @@
           ↓ ضع مفتاح الإعلان ورابط السكريبت هنا ↓   */
     injectBanner(
       'ad-mob-top',
-      'ضع_رابط_سكريبت_320x50_هنا',
+      'https://bauval.org/22/7ba3e4b2562ec32fe469244d1c937d74',
       // مثال: 'https://bauval.org/22/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-      'ضع_المفتاح_key_هنا',   // مثال: '7ba3e4b2562ec32fe469244d1c937d74'
+      '7ba3e4b2562ec32fe469244d1c937d74',   // مثال: '7ba3e4b2562ec32fe469244d1c937d74'
       320, 50
     );
 
@@ -151,9 +151,9 @@
           ↓ ضع مفتاح الإعلان ورابط السكريبت هنا ↓   */
     injectBanner(
       'ad-rect',
-      'ضع_رابط_سكريبت_300x250_هنا',
+      'https://bauval.org/22/729c9fd7aa7322cef370e2d2f67a5788',
       // مثال: 'https://bauval.org/22/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-      'ضع_المفتاح_key_هنا',   // مثال: '729c9fd7aa7322cef370e2d2f67a5788'
+      '729c9fd7aa7322cef370e2d2f67a5788',   // مثال: '729c9fd7aa7322cef370e2d2f67a5788'
       300, 250
     );
 
@@ -169,9 +169,9 @@
           ↓ ضع مفتاح الإعلان ورابط السكريبت هنا ↓   */
     injectBanner(
       'ad-leader',
-      'ضع_رابط_سكريبت_728x90_هنا',
+      'https://bauval.org/22/b438ca159fef3619cd01dd89663463be',
       // مثال: 'https://bauval.org/22/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-      'ضع_المفتاح_key_هنا',   // مثال: 'b438ca159fef3619cd01dd89663463be'
+      'b438ca159fef3619cd01dd89663463be',   // مثال: 'b438ca159fef3619cd01dd89663463be'
       728, 90
     );
 
@@ -181,9 +181,9 @@
           ↓ ضع مفتاح الإعلان ورابط السكريبت هنا ↓   */
     injectBanner(
       'ad-rect',
-      'ضع_رابط_سكريبت_300x250_هنا',
+      'https://bauval.org/22/729c9fd7aa7322cef370e2d2f67a5788',
       // مثال: 'https://bauval.org/22/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-      'ضع_المفتاح_key_هنا',   // مثال: '729c9fd7aa7322cef370e2d2f67a5788'
+      '729c9fd7aa7322cef370e2d2f67a5788',   // مثال: '729c9fd7aa7322cef370e2d2f67a5788'
       300, 250
     );
 
@@ -193,9 +193,9 @@
           ↓ ضع مفتاح الإعلان ورابط السكريبت هنا ↓   */
     injectBanner(
       'ad-468',
-      'ضع_رابط_سكريبت_468x60_هنا',
+      'https://bauval.org/22/1e423ba61e8df2d60437276587320065',
       // مثال: 'https://bauval.org/22/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-      'ضع_المفتاح_key_هنا',   // مثال: '1e423ba61e8df2d60437276587320065'
+      '1e423ba61e8df2d60437276587320065',   // مثال: '1e423ba61e8df2d60437276587320065'
       468, 60
     );
 
@@ -205,9 +205,9 @@
           ↓ ضع مفتاح الإعلان ورابط السكريبت هنا ↓   */
     injectBanner(
       'ad-sky-sm',
-      'ضع_رابط_سكريبت_160x300_هنا',
+      'https://bauval.org/22/fabddc7a40461c7b942294ab544c4344',
       // مثال: 'https://bauval.org/22/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-      'ضع_المفتاح_key_هنا',   // مثال: 'fabddc7a40461c7b942294ab544c4344'
+      'fabddc7a40461c7b942294ab544c4344',   // مثال: 'fabddc7a40461c7b942294ab544c4344'
       160, 300
     );
 
@@ -217,9 +217,9 @@
           ↓ ضع مفتاح الإعلان ورابط السكريبت هنا ↓   */
     injectBanner(
       'ad-sky-lg',
-      'ضع_رابط_سكريبت_160x600_هنا',
+      'https://bauval.org/22/d6d837601ee8eae05c4e2f5180e6638d',
       // مثال: 'https://bauval.org/22/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-      'ضع_المفتاح_key_هنا',   // مثال: 'd6d837601ee8eae05c4e2f5180e6638d'
+      'd6d837601ee8eae05c4e2f5180e6638d',   // مثال: 'd6d837601ee8eae05c4e2f5180e6638d'
       160, 600
     );
 
