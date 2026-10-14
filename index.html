@@ -24,6 +24,25 @@
       min-height: 0;
       margin: 0 auto 16px;
     }
+    .ad-card {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 100%;
+      min-height: 90px;
+      padding: 14px 18px;
+      box-sizing: border-box;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ffffff, #e8f1ff);
+      color: #172554;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,.12);
+    }
+    .ad-card:hover { background: #dbeafe; }
+    .ad-label { font-size: 11px; color: #64748b; }
+    .ad-action { font-size: 12px; color: #2563eb; }
     .loading-box {
       text-align: center;
       padding: 40px;
@@ -64,16 +83,13 @@
   </style>
 </head>
 <body>
-  <!-- الإعلان معزول داخل iframe حتى لا يؤثر على صفحة التحويل -->
+  <!-- إعلان مرئي؛ النقر يفتح رابط الإعلان في تبويب مستقل -->
   <div id="ad-container" aria-label="إعلان">
-    <iframe
-      src="https://hecticwelcomingassociation.com/a0h6a5p0w?key=3916093b4f41fc449057a56ca11ab876"
-      title="إعلان"
-      loading="lazy"
-      referrerpolicy="no-referrer"
-      sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
-      style="display:block;width:100%;max-width:320px;height:90px;margin:0 auto 16px;border:0;background:transparent;">
-    </iframe>
+    <a class="ad-card" href="https://hecticwelcomingassociation.com/a0h6a5p0w?key=3916093b4f41fc449057a56ca11ab876" target="_blank" rel="noopener noreferrer">
+      <span class="ad-label">إعلان</span>
+      <strong>اكتشف العرض الآن</strong>
+      <span class="ad-action">اضغط لفتح الإعلان ←</span>
+    </a>
   </div>
   <div class="loading-box">
     <div class="spinner"></div>
