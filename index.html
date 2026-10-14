@@ -62,30 +62,51 @@
     <p>جاري تحويلك إلى الصفحة المطلوبة...</p>
     <span>سيتم التحويل بعد: <span id="timer">5</span> ثوانٍ</span>
     <br>
-    <a id="redirect-btn" class="btn" href="#">اضغط هنا إذا لم يتم تحويلك</a>
+    <a id="redirect-btn" class="btn" href="#">اضغط هنا للانتقال للرابط</a>
   </div>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const targetUrl = urlParams.get('url');
-    const secondsParam = urlParams.get('time');
-    let timeLeft = secondsParam ? parseInt(secondsParam) : 5; 
-    if (targetUrl) {
-      document.getElementById('redirect-btn').href = targetUrl;
-      const timerElement = document.getElementById('timer');
+    const encodedUrl = urlParams.get('b64');
+    const directUrl = urlParams.get('url');
+    const buttonText = urlParams.get('text') || 'اضغط هنا للانتقال للرابط';
+    const secondsParam = parseInt(urlParams.get('time'), 10);
+
+    // فك Base64 مع دعم النصوص العربية وUTF-8.
+    function decodeBase64Utf8(value) {
+      try {
+        const binary = atob(value.replace(/-/g, '+').replace(/_/g, '/'));
+        const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+        return new TextDecoder('utf-8').decode(bytes);
+      } catch (error) {
+        return '';
+      }
+    }
+
+    const targetUrl = encodedUrl ? decodeBase64Utf8(encodedUrl) : directUrl;
+    const timerElement = document.getElementById('timer');
+    const redirectButton = document.getElementById('redirect-btn');
+    const messageElement = document.querySelector('.loading-box p');
+    const countdownLabel = document.querySelector('.loading-box > span');
+    let timeLeft = Number.isFinite(secondsParam) && secondsParam >= 0 ? secondsParam : 5;
+
+    if (targetUrl && /^https?:\/\//i.test(targetUrl)) {
+      redirectButton.href = targetUrl;
+      redirectButton.textContent = buttonText;
       timerElement.textContent = timeLeft;
+
       const countdown = setInterval(() => {
-        timeLeft--;
-        timerElement.textContent = timeLeft;
+        timeLeft -= 1;
+        timerElement.textContent = Math.max(timeLeft, 0);
         if (timeLeft <= 0) {
           clearInterval(countdown);
           window.location.replace(targetUrl);
         }
       }, 1000);
     } else {
-      document.querySelector('.loading-box p').textContent = "لم يتم تحديد رابط وجهة صالح.";
-      document.querySelector('.loading-box span').style.display = 'none';
+      messageElement.textContent = 'لم يتم تحديد رابط وجهة صالح.';
+      countdownLabel.style.display = 'none';
       document.querySelector('.spinner').style.display = 'none';
-      document.getElementById('redirect-btn').style.display = 'none';
+      redirectButton.style.display = 'none';
     }
   </script>
 </body>
