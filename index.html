@@ -8,12 +8,21 @@
     body {
       font-family: Arial, sans-serif;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
       background-color: #f7f9fa;
       color: #333;
+    }
+    #ad-container {
+      width: 100%;
+      max-width: 320px;
+      min-height: 0;
+      margin: 0 auto 16px;
     }
     .loading-box {
       text-align: center;
@@ -55,8 +64,17 @@
   </style>
 </head>
 <body>
-  <!-- إعلان خارجي -->
-  <script async src="https://hecticwelcomingassociation.com/a0h6a5p0w?key=3916093b4f41fc449057a56ca11ab876"></script>
+  <!-- الإعلان معزول داخل iframe حتى لا يؤثر على صفحة التحويل -->
+  <div id="ad-container" aria-label="إعلان">
+    <iframe
+      src="https://hecticwelcomingassociation.com/a0h6a5p0w?key=3916093b4f41fc449057a56ca11ab876"
+      title="إعلان"
+      loading="lazy"
+      referrerpolicy="no-referrer"
+      sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
+      style="display:block;width:100%;max-width:320px;height:90px;margin:0 auto 16px;border:0;background:transparent;">
+    </iframe>
+  </div>
   <div class="loading-box">
     <div class="spinner"></div>
     <p>جاري تحويلك إلى الصفحة المطلوبة...</p>
@@ -71,7 +89,6 @@
     const buttonText = urlParams.get('text') || 'اضغط هنا للانتقال للرابط';
     const secondsParam = parseInt(urlParams.get('time'), 10);
 
-    // فك Base64 مع دعم النصوص العربية وUTF-8.
     function decodeBase64Utf8(value) {
       try {
         const binary = atob(value.replace(/-/g, '+').replace(/_/g, '/'));
@@ -99,7 +116,7 @@
         timerElement.textContent = Math.max(timeLeft, 0);
         if (timeLeft <= 0) {
           clearInterval(countdown);
-          window.location.replace(targetUrl);
+          window.location.assign(targetUrl);
         }
       }, 1000);
     } else {
