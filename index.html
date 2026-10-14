@@ -55,7 +55,8 @@
   </style>
 </head>
 <body>
-
+  <!-- إعلان خارجي -->
+  <script async src="https://hecticwelcomingassociation.com/a0h6a5p0w?key=3916093b4f41fc449057a56ca11ab876"></script>
   <div class="loading-box">
     <div class="spinner"></div>
     <p>جاري تحويلك إلى الصفحة المطلوبة...</p>
@@ -63,18 +64,15 @@
     <br>
     <a id="redirect-btn" class="btn" href="#">اضغط هنا إذا لم يتم تحويلك</a>
   </div>
-
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const targetUrl = urlParams.get('url');
     const secondsParam = urlParams.get('time');
     let timeLeft = secondsParam ? parseInt(secondsParam) : 5; 
-
     if (targetUrl) {
       document.getElementById('redirect-btn').href = targetUrl;
       const timerElement = document.getElementById('timer');
       timerElement.textContent = timeLeft;
-
       const countdown = setInterval(() => {
         timeLeft--;
         timerElement.textContent = timeLeft;
@@ -90,6 +88,5 @@
       document.getElementById('redirect-btn').style.display = 'none';
     }
   </script>
-
 </body>
 </html>
