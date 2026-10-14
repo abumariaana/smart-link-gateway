@@ -3,449 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مركز فحص وتجهيز الروابط الآمنة</title>
+  <title>جاري التحويل...</title>
   <style>
-    :root {
-      --primary: #2563eb;
-      --primary-hover: #1d4ed8;
-      --success: #10b981;
-      --bg: #0f172a;
-      --card-bg: #1e293b;
-      --border: #334155;
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
+      font-family: Arial, sans-serif;
       display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .site-header {
-      background: var(--card-bg);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 20px;
-      text-align: center;
-      font-weight: bold;
-      color: #60a5fa;
-      font-size: 1.1rem;
-    }
-
-    .page-wrapper {
-      display: grid;
-      grid-template-columns: 180px 1fr 180px;
-      gap: 15px;
-      max-width: 1350px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 20px 15px;
-      flex: 1;
-      align-items: start;
-    }
-
-    .sidebar {
-      display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      justify-content: flex-start;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 10px;
-      border-radius: 12px;
-      min-height: 320px;
+      height: 100vh;
+      margin: 0;
+      background-color: #f7f9fa;
+      color: #333;
     }
-
-    .main-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      width: 100%;
-    }
-
-    .redirect-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 25px 20px;
+    .loading-box {
       text-align: center;
-      width: 100%;
-      max-width: 730px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      padding: 40px;
+      background-color: black;
+      color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
-
-    .security-badge {
-      display: inline-block;
-      background: rgba(16, 185, 129, 0.15);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 4px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      margin-bottom: 12px;
-    }
-
-    .redirect-card h1 {
-      font-size: 1.35rem;
-      margin-bottom: 8px;
-      color: #fff;
-    }
-
-    .redirect-card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 15px;
-    }
-
-    .timer-circle {
-      width: 85px;
-      height: 85px;
+    .spinner {
+      border: 4px solid #333;
+      border-top: 4px solid #3498db;
       border-radius: 50%;
-      border: 4px solid var(--primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.9rem;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 15px;
+    }
+    #timer {
+      font-size: 28px;
       font-weight: bold;
-      color: #60a5fa;
-      margin: 15px auto;
-      box-shadow: 0 0 15px rgba(37, 99, 235, 0.25);
-      transition: all 0.3s ease;
+      color: #3498db;
+      display: inline-block;
     }
-
-    .btn-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-top: 15px;
-    }
-
     .btn {
       display: inline-block;
-      padding: 13px 28px;
+      margin-top: 25px;
+      padding: 12px 25px;
+      background-color: #3498db;
+      color: white;
+      text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
-      text-decoration: none;
-      transition: all 0.25s ease;
-      cursor: pointer;
-      border: none;
-      font-size: 1rem;
     }
-
-    .btn-primary {
-      background-color: var(--primary);
-      color: #fff;
-      display: none;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-    }
-
-    .btn-primary:hover {
-      background-color: var(--primary-hover);
-      transform: translateY(-2px);
-    }
-
-    .btn-smart {
-      background-color: var(--success);
-      color: #fff;
-    }
-
-    .btn-smart:hover {
-      background-color: #059669;
-    }
-
-    .info-article {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 22px;
-      width: 100%;
-      max-width: 730px;
-      text-align: right;
-    }
-
-    .info-article h2 {
-      font-size: 1.15rem;
-      color: #60a5fa;
-      margin-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 8px;
-    }
-
-    .info-article p {
-      font-size: 0.92rem;
-      color: #cbd5e1;
-      margin-bottom: 12px;
-    }
-
-    .info-article ul {
-      padding-right: 20px;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .info-article li {
-      margin-bottom: 6px;
-    }
-
-    .ad-slot {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 5px auto;
-      max-width: 100%;
-      overflow: hidden;
-      background: rgba(30, 41, 59, 0.5);
-      border-radius: 8px;
-      padding: 6px;
-    }
-
-    .native-ad-container {
-      width: 100%;
-      max-width: 730px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
-      text-align: center;
-    }
-
-    .site-footer {
-      text-align: center;
-      padding: 15px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-      margin-top: auto;
-    }
-
-    @media (max-width: 1024px) {
-      .page-wrapper {
-        grid-template-columns: 1fr;
-      }
-      .sidebar {
-        display: none;
-      }
-    }
-
-    @media (max-width: 500px) {
-      .redirect-card, .info-article { padding: 18px 14px; }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
 
-  <header class="site-header">
-    بوابة تحويل الروابط
-  </header>
-
-  <div class="page-wrapper">
-    
-    <!-- =======================================================================
-         [1] بداية كود إعلان العمود الجانبي الأيمن
-         - ماهيته: بانر عمودي طويل (Skyscraper Banner)
-         - مقاسه: عرض 160 بكسل × ارتفاع 600 بكسل (160x600)
-         - هل متجاوب أم لا؟: غير متجاوب من المصدر (ثابت المقاس)، لذلك يظهر على شاشات الكمبيوتر فقط.
-    ======================================================================== -->
-    <aside class="sidebar">
-      <div class="ad-slot">
-        <!-- ضع هنا كود الإعلان الخاص بحسابك: بانر عمودي 160x600 -->
-      </div>
-    </aside>
-    <!-- ==================== [1] نهاية كود إعلان (160x600) ==================== -->
-
-
-    <!-- المحتوى الرئيسي بالمنتصف -->
-    <main class="main-content">
-
-      <!-- =====================================================================
-           [2] بداية كود البانر العلوي الموحد (كتلة واحدة غير مقطوعة)
-           - ماهيته: بانر علوي موحد يدمج 3 بانرات (للكمبيوتر والتابلت والهاتف) في كود واحد.
-           - مقاساته:
-             1. للكمبيوتر: 728x90 (عرض 728 × ارتفاع 90)
-             2. للتابلت: 468x60 (عرض 468 × ارتفاع 60)
-             3. للهاتف: 320x50 (عرض 320 × ارتفاع 50)
-           - هل متجاوب أم لا؟: البانرات نفسها ثابتة المقاس من الشركة، ولكن تم جعل هذا الكود متجاوباً بالكامل برمجياً؛ حيث يفحص عرض شاشة الزائر ويستدعي البانر المناسب لجهازه فقط في مكان واحد دون تقطيع.
-      ====================================================================== -->
-      <div class="ad-slot">
-        <!-- ضع هنا كود الإعلان الخاص بحسابك: بانر علوي (متجاوب) -->
-      </div>
-      <!-- ================ [2] نهاية كود البانر العلوي الموحد ================ -->
-
-
-      <!-- بطاقة العداد التنازلي والزر اليدوي -->
-      <div class="redirect-card">
-        <span class="security-badge">رابط محوَّل</span>
-        <h1 id="status-title">جاري تجهيز الرابط المطلوب...</h1>
-        <p id="status-desc">انتظر انتهاء العداد ليظهر زر الانتقال. هذه الصفحة قد تعرض إعلانات.</p>
-        
-        <div class="timer-circle" id="countdown">10</div>
-
-        <div class="btn-group">
-          <!-- زر الرابط النهائي (يظهر بعد انتهاء الوقت ويفتح في تبويب جديد عند الضغط عليه) -->
-          <a href="#" id="direct-link-btn" class="btn btn-primary" target="_blank" rel="nofollow noopener noreferrer">اضغط هنا للانتقال للرابط</a>
-          
-          <!-- =================================================================
-               [3] بداية كود إعلان السمارت لينك (Smart Link / Direct Link)
-               - ماهيته: رابط إعلاني مباشر ذكي يوجه المستخدم لعروض المعلنين عند النقر.
-               - مقاسه: ليس له مقاس (عبارة عن رابط URL تم دمجه داخل زر HTML).
-               - هل متجاوب أم لا؟: متجاوب تماماً 100% لأنه زر مرن يتكيف مع الهاتف والكمبيوتر.
-          ================================================================== -->
-          <!-- زر رابط إعلاني اختياري: إن أضفته فاكتب عليه بوضوح "إعلان" ولا تسمّه "سيرفر" أو "تحميل" -->
-          <!-- ============== [3] نهاية كود إعلان السمارت لينك ============== -->
-        </div>
-      </div>
-
-
-      <!-- =====================================================================
-           [4] بداية كود البانر المتوسط المربع (Medium Rectangle)
-           - ماهيته: بانر إعلاني مستطيل متوسط الحجم يوضع أسفل صندوق التحويل.
-           - مقاسه: عرض 300 بكسل × ارتفاع 250 بكسل (300x250).
-           - هل متجاوب أم لا؟: غير متجاوب من المصدر (ثابت المقاس 300x250)، ولكنه يعمل بامتياز على جميع الهواتف والكمبيوتر لأن عرضه (300 بكسل) أصغر من عرض أي شاشة هاتف حديثة.
-      ====================================================================== -->
-      <div class="ad-slot">
-        <!-- ضع هنا كود الإعلان الخاص بحسابك: بانر 300x250 -->
-      </div>
-      <!-- ==================== [4] نهاية كود إعلان (300x250) ==================== -->
-
-
-      <!-- محتوى نصي إرشادي لحماية الصفحة أمام مراجعات الشبكة الإعلانية -->
-      <article class="info-article">
-        <h2>كيف تعمل هذه الصفحة؟</h2>
-        <p>هذه الصفحة تعرض عدّادًا قصيرًا ثم زرًّا يفتح الرابط الذي اختاره صاحب الرابط. لا تقوم الصفحة بفحص الروابط أو ضمان سلامتها، لذا افتح الروابط التي تثق بمصدرها فقط. قد تظهر إعلانات على الصفحة تموّل الخدمة.</p>
-      </article>
-
-
-      <!-- =====================================================================
-           [5] بداية كود إعلان النيتف بانر (Native Banner)
-           - ماهيته: شبكة إعلانات مدمجة تشبه المقالات والمحتوى الأصلي للموقع.
-           - مقاسه: مرن (يأخذ عرض الحاوية الموجود بداخلها تلقائياً).
-           - هل متجاوب أم لا؟: متجاوب تلقائياً 100% من المصدر (Responsive)، حيث يرتب الصور والعناوين أفقياً على الكمبيوتر وعمودياً على الهاتف تلقائياً.
-      ====================================================================== -->
-      <div class="native-ad-container">
-        <!-- ضع هنا كود الإعلان الخاص بحسابك: Native Banner -->
-      </div>
-      <!-- ================== [5] نهاية كود إعلان النيتف بانر ================== -->
-
-    </main>
-
-
-    <!-- =======================================================================
-         [6] بداية كود إعلان العمود الجانبي الأيسر
-         - ماهيته: بانر عمودي نصف طويل (Half-Skyscraper Banner)
-         - مقاسه: عرض 160 بكسل × ارتفاع 300 بكسل (160x300)
-         - هل متجاوب أم لا؟: غير متجاوب من المصدر (ثابت المقاس)، لذلك يظهر على شاشات الكمبيوتر فقط.
-    ======================================================================== -->
-    <aside class="sidebar">
-      <div class="ad-slot">
-        <!-- ضع هنا كود الإعلان الخاص بحسابك: بانر جانبي 160x300 -->
-      </div>
-    </aside>
-    <!-- ==================== [6] نهاية كود إعلان (160x300) ==================== -->
-
+  <div class="loading-box">
+    <div class="spinner"></div>
+    <p>جاري تحويلك إلى الصفحة المطلوبة...</p>
+    <span>سيتم التحويل بعد: <span id="timer">5</span> ثوانٍ</span>
+    <br>
+    <a id="redirect-btn" class="btn" href="#">اضغط هنا إذا لم يتم تحويلك</a>
   </div>
 
-  <footer class="site-footer">
-    جميع الحقوق محفوظة © بوابة تحويل الروابط
-  </footer>
-
-
-  <!-- =========================================================================
-       [7] بداية كود إعلان السوشيال بار (Social Bar)
-       - ماهيته: إعلان عائم تفاعلي يظهر على شكل إشعارات أو أيقونات جذابة في زوايا الشاشة.
-       - مقاسه: عائم (Floating / Dynamic) لا يشغل حيزاً ثابتاً داخل هيكل الصفحة.
-       - هل متجاوب أم لا؟: متجاوب تلقائياً 100% من المصدر، ويتكيف مع شاشات الهاتف والكمبيوتر.
-  ========================================================================== -->
-  <!-- ضع هنا كود الإعلان الخاص بحسابك: Social Bar (اختياري) -->
-  <!-- =================== [7] نهاية كود إعلان السوشيال بار =================== -->
-
-
-  <!-- =========================================================================
-       [8] بداية كود الإعلانات المنبثقة (Popunder Ad)
-       - ماهيته: إعلان نافذة منبثقة خلفية (Popunder) يفتح في تبويب أو نافذة جديدة عند ضغط الزائر في أي مكان بالصفحة.
-       - مقاسه: نافذة متصفح كاملة (Full Window/Tab) وليس له حيز داخل تصميم الصفحة.
-       - هل متجاوب أم لا؟: متجاوب تلقائياً 100% لأنه يفتح صفحة هبوط كاملة تتكيف مع متصفح الهاتف أو الكمبيوتر.
-  ========================================================================== -->
-  <!-- ضع هنا كود الإعلان الخاص بحسابك: Popunder (اختياري - يفضل عدم استخدامه لأنه مزعج للزوار) -->
-  <!-- =================== [8] نهاية كود الإعلانات المنبثقة =================== -->
-
-
-  <!-- سكريبت العداد وإظهار الزر ليفتح في تبويب جديد -->
   <script>
-    (function() {
-      const DEFAULT_DESTINATION = "";
-      const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetUrl = urlParams.get('url');
+    const secondsParam = urlParams.get('time');
+    let timeLeft = secondsParam ? parseInt(secondsParam) : 5; 
 
-      function decodeBase64(str) {
-        try {
-          return decodeURIComponent(atob(str).split('').map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-          }).join(''));
-        } catch (e) {
-          return null;
-        }
-      }
+    if (targetUrl) {
+      document.getElementById('redirect-btn').href = targetUrl;
+      const timerElement = document.getElementById('timer');
+      timerElement.textContent = timeLeft;
 
-      let targetUrl = DEFAULT_DESTINATION;
-      if (urlParams.get('b64')) {
-        const decoded = decodeBase64(urlParams.get('b64'));
-        if (decoded) targetUrl = decoded;
-      } else if (urlParams.get('url') || urlParams.get('dest')) {
-        targetUrl = urlParams.get('url') || urlParams.get('dest');
-      }
-
-      if (!/^https?:\/\//i.test(targetUrl)) targetUrl = ""; // منع javascript: وغيره
-      let timeLeft = parseInt(urlParams.get('time'), 10);
-      if (isNaN(timeLeft) || timeLeft < 1) {
-        timeLeft = 10;
-      }
-
-      const customBtnText = urlParams.get('text') || "اضغط هنا للانتقال للرابط";
-
-      const countdownEl = document.getElementById('countdown');
-      const directBtn = document.getElementById('direct-link-btn');
-      const statusTitle = document.getElementById('status-title');
-      const statusDesc = document.getElementById('status-desc');
-
-      countdownEl.textContent = timeLeft;
-      directBtn.textContent = customBtnText;
-
-      const timer = setInterval(() => {
+      const countdown = setInterval(() => {
         timeLeft--;
-        countdownEl.textContent = timeLeft;
-
+        timerElement.textContent = timeLeft;
         if (timeLeft <= 0) {
-          clearInterval(timer);
-          countdownEl.textContent = "✓";
-          countdownEl.style.borderColor = "#10b981";
-          countdownEl.style.color = "#10b981";
-          
-          statusTitle.textContent = "الرابط جاهز الآن!";
-          statusDesc.textContent = "اضغط على الزر بالأسفل لفتح الرابط في نافذة جديدة. لم يتم فحص الرابط، فتأكد من ثقتك بمصدره.";
-          
-          if (targetUrl) {
-            directBtn.href = targetUrl;
-            directBtn.target = "_blank";
-            directBtn.style.display = "inline-block";
-          } else {
-            statusTitle.textContent = "لا يوجد رابط صالح";
-            statusDesc.textContent = "الرابط ناقص أو غير صالح. اطلب من صاحبه رابطًا جديدًا.";
-          }
+          clearInterval(countdown);
+          window.location.replace(targetUrl);
         }
       }, 1000);
-    })();
+    } else {
+      document.querySelector('.loading-box p').textContent = "لم يتم تحديد رابط وجهة صالح.";
+      document.querySelector('.loading-box span').style.display = 'none';
+      document.querySelector('.spinner').style.display = 'none';
+      document.getElementById('redirect-btn').style.display = 'none';
+    }
   </script>
 
 </body>
